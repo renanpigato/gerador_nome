@@ -1,0 +1,51 @@
+<!--
+  Awesome, your propel set up is nearly done! You just have to describe how you want your database to look like.
+
+  You can let propel set up your mysql database by running `vendor/bin/propel database:create && vendor/bin/propel database:insert-sql`.
+  This will create your database including all the tables.
+-->
+
+<database name="default" defaultIdMethod="native"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd"
+          namespace="GeradorNome"
+        >
+
+  <table name="palavra" phpName="Palavra">
+    <!--
+      Each column also requires a `type`. The XML schema is database agnostic, so the column types and attributes
+      are probably not exactly the same as the one you use in your own database. But Propel knows how to map the
+      schema types with SQL types for many database vendors. Existing Propel column types are:
+      `boolean`, `tinyint`, `smallint`, `integer`, `bigint`, `double`, `float`, `real`, `decimal`, `char`,
+      `varchar`, `longvarchar`, `date`, `time`, `timestamp`, `blob`, `clob`, `object`, and `array`.
+
+      Some column types use a size (like `varchar` and `int`), some have unlimited size (`longvarchar`, `clob`, `blob`).
+
+      Check the (schema reference)[http://propelorm.org/reference/schema.html] for more details on each column type.
+
+      As for the other column attributes, `required`, `primaryKey`, and `autoIncrement`, they mean exactly what their names imply.
+    -->
+    <column name="id"                   type="INTEGER"     required="true"     primaryKey="true" autoIncrement="true"   phpName="Id" />
+    <column name="palavra"              type="VARCHAR"     size="250"          required="true"                          phpName="Palavra" />
+    <unique name="palavra_un_in">
+      <unique-column name="palavra"/>
+    </unique>
+
+    <!--
+      A foreign key represents a relationship. Just like a table or a column, a relationship has a `phpName`.
+      By default, Propel uses the `phpName` of the foreign table as the `phpName` of the relation.
+
+      The `refPhpName` defines the name of the relation as seen from the foreign table.
+    -->
+  </table>
+
+  <table name="nome_sugerido" phpName="NomeSugerido">
+    <column name="id"        type="BIGINT"                   required="true"   primaryKey="true" autoIncrement="true"    phpName="Id" />
+    <column name="nome"      type="VARCHAR"    size="250"    required="true"                                             phpName="Nome" />
+    <column name="data"      type="date"                     required="true"                                             phpName="Data" />
+    <unique name="nome_un_in">
+      <unique-column name="nome"/>
+    </unique>
+  </table>
+
+</database>
