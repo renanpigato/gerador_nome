@@ -42,6 +42,8 @@
   <table name="nome_sugerido" phpName="NomeSugerido">
     <column name="id"        type="BIGINT"                   required="true"   primaryKey="true" autoIncrement="true"    phpName="Id" />
     <column name="nome"      type="VARCHAR"    size="250"    required="true"                                             phpName="Nome" />
+    <column name="quantidade_silabas"      type="integer"                  required="true"                               phpName="QuantidadeSilabas" />
+    <column name="inicial"                 type="VARCHAR"    size="1"      required="true"                               phpName="Inicial" />
     <column name="data"      type="date"                     required="true"                                             phpName="Data" />
     <unique name="nome_un_in">
       <unique-column name="nome"/>

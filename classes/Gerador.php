@@ -93,12 +93,19 @@ class Gerador
         }
 
         foreach ($nomes as $qtdeSil => $nomesGerados) {
+
+            $qtdSilabas = 2;
+            if ($qtdeSil == 'tres_silabas') {
+                $qtdSilabas = 3;
+            }
             
             foreach ($nomesGerados as $nomeGerado) {
                 
                 $nm = new NomeSugerido();
                 $nm->setNome($nomeGerado);
                 $nm->setData($timestampAtual);
+                $nm->setQuantidadeSilabas($qtdSilabas);
+                $nm->setInicial(substr($nomeGerado, 0, 1));
 
                 try {
 
